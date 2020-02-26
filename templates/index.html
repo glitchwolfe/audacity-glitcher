@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+	<head>
+		<meta charset="utf-8">
+		<title>Audacity Glitcher</title>
+		<link rel="stylesheet" href="/css/styles.css">
+		<script type="text/javascript" src="/js/jquery.min.js"></script>
+		<script type="text/javascript" src="/js/sweetalert2.min.js"></script>
+	</head>
+	<body>
+		<div class="row">
+			<pre>{{message}}</pre>
+		</div>
+
+		<h2>Editor</h2>
+
+		<div class="row">
+			<a class="btn" href="/import-raw/" onClick="importRaw()">Import Raw...</a>
+			<a class="btn" href="/export/" onClick="exportRaw()">Export...</a>
+			<a class="btn" href="/select-all/">Select All</a>
+			<a class="btn" href="/undo/">Undo</a>
+		</div>
+
+		<h2>Effects</h2>
+
+		<div class="row">
+			<a class="effect-btn" href="/apply-effects/">
+				<span>Glitchit</span>
+				<img src="/img/glitchit.png">
+			</a>
+			<a class="effect-btn" href="/reverb/">
+				<span>Reverb</span>
+				<img src="/img/reverb.jpg">
+			</a>
+			<a class="effect-btn" href="/phaser/">
+				<span>Phaser</span>
+				<img src="/img/phaser.jpg">
+			</a>
+			<a class="effect-btn" href="/wahwah/">
+				<span>Wahwah</span>
+				<img src="/img/wahwah.jpg">
+			</a>
+			<a class="effect-btn" href="/filter-curve/">
+				<span>Filter Curve</span>
+				<img src="/img/filtercurve-gui.jpg">
+			</a>
+			<a class="effect-btn" href="/graphic-eq/">
+				<span>Graphic EQ</span>
+				<img src="/img/graphic-eq-gui.jpg">
+			</a>
+		</div>
+
+		<script type="text/javascript" src="/js/glitch.js"></script>
+	</body>
+</html>
