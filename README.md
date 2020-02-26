@@ -2,7 +2,7 @@
 
 Python scripts for glitching images with Audacity.
 
-![Example Editing UI](https://raw.githubusercontent.com/juan0tron/audacity-glitcher/master/docs/editor-example.jpg)
+![Example Editing UI](https://raw.githubusercontent.com/juan0tron/audacity-glitcher/master/docs/editor.jpg)
 
 
 # Prerequisites
@@ -28,7 +28,7 @@ Python scripts for glitching images with Audacity.
 
 # Example Output
 
-![Example Output](https://raw.githubusercontent.com/juan0tron/audacity-glitcher/master/docs/glitchit.png)
+![Example Output](https://raw.githubusercontent.com/juan0tron/audacity-glitcher/master/docs/glitchit.jpg)
 
 
 -----
