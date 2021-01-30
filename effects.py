@@ -11,14 +11,21 @@
 exec( open("pipe_test.py" ).read() )
 
 
+def applyEffects(commandStrings):
+	for command in commandStrings:
+		do(command)
+
+
 def saveMultipleFrames(commandStrings, reversed=False):
 	"""
 	Does a stack of commands frame by frame and
 	opens the export window every time to assist
 	with saving a sequence of commands
 	"""
+
 	if reversed:
 		commandStrings = reversed(commandStrings)
+
 	for command in commandStrings:
 		do(command)
 		do("Export")
@@ -50,55 +57,81 @@ def cutAndPaste():
 	pass
 
 
-# Creates a football-shaped waveform
-# Seems to brighten the selected part of the image in a gradient
-def fadeOutIn():
-	do("FadeOut")
-	do("FadeIn")
+def echo():
+	applyEffects([
+		"Echo"
+	])
 
-def reverb():
-	do("Reverb: RoomSize=75 Delay=10 Reverberance=50 HfDamping=50 ToneLow=100 ToneHigh=100 WetGain=-1 DryGain=-1 StereoWidth=100 WetOnly=False")
 
-def phaser():
-	do("Phaser: Stages=2 DryWet=128 Freq=0.4 Phase=0 Depth=100 Feedback=0 Gain=-6")
+def fadeIn():
+	applyEffects([
+		"FadeIn",
+	])
 
-def wahwah():
-	do("Wahwah: Freq=1.5 Phase=0 Depth=70 Resonance=2.5 Offset=30 Gain=-6")
+
+def fadeOut():
+	applyEffects([
+		"FadeOut",
+	])
+
 
 def filterCurve():
 	do("FilterCurve")
 
+
 def graphicEQ():
 	do("GraphicEQ")
+
+
+def invert():
+	applyEffects([
+		"Invert"
+	])
+
+
+def reverb():
+	do("Reverb: RoomSize=75 Delay=10 Reverberance=50 HfDamping=50 ToneLow=100 ToneHigh=100 WetGain=-1 DryGain=-1 StereoWidth=100 WetOnly=False")
+
+
+def paulstretch():
+	applyEffects([
+		"Paulstretch"
+	])
+
+
+def phaser():
+	do("Phaser: Stages=2 DryWet=128 Freq=0.4 Phase=0 Depth=100 Feedback=0 Gain=-6")
+
+
+def wahwah():
+	do("Wahwah: Freq=1.5 Phase=0 Depth=70 Resonance=2.5 Offset=30 Gain=-6")
+
+
+
+
+
 
 def reverse():
 	do("Reverse")
 
+
 # Glitch effects scratchpad function - do whatever here
 def glitchit():
 
-	fadeOutIn = [
-		"FadeOut",
-		"FadeIn",
-	]
-
 	echoEcho = [
-		"Echo: Delay=0 Decay=0.5",
-		"Echo: Delay=5 Decay=0.5",
-		"Echo: Delay=10 Decay=0.5",
+		"Echo",
+		# "Echo: Delay=5 Decay=0.5",
+		# "Echo: Delay=10 Decay=0.5",
 	]
 
 	progressiveReverb = [
-		# "Reverb: RoomSize=75 Delay=10 Reverberance=50 HfDamping=50 ToneLow=100 ToneHigh=100 WetGain=-1 DryGain=-1 StereoWidth=100 WetOnly=False",
 		"Reverb: RoomSize=70 Delay=10 Reverberance=0 HfDamping=50 ToneLow=100 ToneHigh=100 WetGain=-1 DryGain=-1 StereoWidth=100 WetOnly=False",
 		"Reverb: RoomSize=60 Delay=10 Reverberance=10 HfDamping=40 ToneLow=100 ToneHigh=100 WetGain=-1 DryGain=-3 StereoWidth=100 WetOnly=False",
 		"Reverb: RoomSize=50 Delay=10 Reverberance=20 HfDamping=30 ToneLow=100 ToneHigh=100 WetGain=-1 DryGain=-5 StereoWidth=100 WetOnly=False",
-		"Reverb: RoomSize=40 Delay=10 Reverberance=30 HfDamping=20 ToneLow=100 ToneHigh=100 WetGain=-1 DryGain=-1 StereoWidth=100 WetOnly=False",
-		"Reverb: RoomSize=30 Delay=10 Reverberance=40 HfDamping=10 ToneLow=100 ToneHigh=100 WetGain=-1 DryGain=-2 StereoWidth=100 WetOnly=False",
-		"Reverb: RoomSize=20 Delay=10 Reverberance=50 HfDamping=00 ToneLow=100 ToneHigh=100 WetGain=-1 DryGain=-1 StereoWidth=100 WetOnly=False",
+		# "Reverb: RoomSize=40 Delay=10 Reverberance=30 HfDamping=20 ToneLow=100 ToneHigh=100 WetGain=-1 DryGain=-1 StereoWidth=100 WetOnly=False",
+		# "Reverb: RoomSize=30 Delay=10 Reverberance=40 HfDamping=10 ToneLow=100 ToneHigh=100 WetGain=-1 DryGain=-2 StereoWidth=100 WetOnly=False",
 	]
 
-	effectsStack = ["Reverse"] + echoEcho + progressiveReverb
+	effectsStack =  echoEcho + progressiveReverb
 
 	saveMultipleFrames(effectsStack)
-	# saveMultipleFrames(effectsStack, reversed=True)
