@@ -1,3 +1,18 @@
+function send_request(url){
+	console.log("SEND REQUEST", url)
+	$.ajax({
+		type: "GET",
+		url: url,
+		success: function(data) {
+		   console.log(data)
+		},
+		error: function (xhr, ajaxOptions, thrownError) {
+		  console.log(xhr.status);
+		  console.log(thrownError);
+		}
+  });
+}
+
 function importRaw(){
 	Swal.fire({
 		title: "Importing File...",

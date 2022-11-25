@@ -60,3 +60,9 @@ Useful links for anyone looking to write their own scripts.
 # Artist Notes
 
 You can see some of my glitch work at [zoewolfe.gay](https://zoewolfe.gay/).
+
+-----
+
+# Troubleshooting
+
+## 

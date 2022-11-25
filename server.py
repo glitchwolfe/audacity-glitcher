@@ -1,7 +1,18 @@
-from flask import Flask, request, send_from_directory, render_template, redirect
+from flask import Flask, request, send_from_directory, render_template, redirect, jsonify
 
 import editor
-import effects
+# import effects
+
+# # Import the module:
+# import pipeclient
+# client = pipeclient.PipeClient()
+
+# # Create a client instance:
+# # Send a command:
+# # Read the last reply:
+# def do(command):
+# 	client.write(command, timer=True)
+# 	print(client.read())
 
 app = Flask(__name__, static_url_path='')
 
@@ -45,7 +56,11 @@ def open():
 @app.route('/select-all/')
 def select_all():
 	editor.selectAll()
-	return redirect("/", code=302)
+	
+	return jsonify({
+		"test": "SELECT_ALL"
+	})
+	
 
 @app.route('/undo/')
 def undo_action():

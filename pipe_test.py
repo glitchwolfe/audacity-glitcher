@@ -57,10 +57,11 @@ def get_response():
     """Return the command response."""
     result = ''
     line = ''
-    while line != '\n':
+    while True:
         result += line
         line = FROMFILE.readline()
-        #print(" I read line:["+line+"]")
+        if line == '\n' and len(result) > 0:
+            break
     return result
 
 def do_command(command):
@@ -76,7 +77,4 @@ def quick_test():
     do_command('Help: Command="GetInfo"')
     #do_command('SetPreference: Name=GUI/Theme Value=classic Reload=1')
 
-def do(command):
-	return do_command(command)
-
-# quick_test()
+quick_test()

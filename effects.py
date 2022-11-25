@@ -8,7 +8,7 @@
 #
 # ==========================
 
-exec( open("pipe_test.py" ).read() )
+# exec( open("pipe_test.py" ).read() )
 
 
 def applyEffects(commandStrings):

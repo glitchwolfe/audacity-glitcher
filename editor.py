@@ -6,9 +6,21 @@
 #
 # ==========================
 
-exec( open("pipe_test.py" ).read() )
+# exec( open("pipe_test.py" ).read() )
 
 import json
+
+
+# # Import the module:
+# import pipeclient
+# client = pipeclient.PipeClient()
+# # Create a client instance:
+# # Send a command:
+# # Read the last reply:
+# def do(command):
+# 	client.write(command, timer=True)
+# 	print(client.read())
+
 
 def importRaw():
 	do("ImportRaw") # Requires manual input
