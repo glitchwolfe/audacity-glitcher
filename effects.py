@@ -8,7 +8,17 @@
 #
 # ==========================
 
-# exec( open("pipe_test.py" ).read() )
+import sys
+import pipe_test
+
+def do(cmd):
+	print("\nEFFECTS COMMAND: "+cmd+"\n")
+	try:
+		response = pipe_test.do_command(cmd)
+		print("======================")
+		return response
+	except:
+		print("Oops!", sys.exc_info()[0], "occurred. [", cmd,"]")
 
 
 def applyEffects(commandStrings):
@@ -54,7 +64,6 @@ def cutAndPaste():
 		do("Select: Start={} End={}".format(s[1], s[1]))
 		do("Paste")
 	"""
-	pass
 
 
 def echo():
@@ -94,10 +103,7 @@ def reverb():
 
 
 def paulstretch():
-	applyEffects([
-		"Paulstretch"
-	])
-
+	do("Paulstretch")
 
 def phaser():
 	do("Phaser: Stages=2 DryWet=128 Freq=0.4 Phase=0 Depth=100 Feedback=0 Gain=-6")
@@ -105,10 +111,6 @@ def phaser():
 
 def wahwah():
 	do("Wahwah: Freq=1.5 Phase=0 Depth=70 Resonance=2.5 Offset=30 Gain=-6")
-
-
-
-
 
 
 def reverse():

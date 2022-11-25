@@ -1,18 +1,7 @@
 from flask import Flask, request, send_from_directory, render_template, redirect, jsonify
 
 import editor
-# import effects
-
-# # Import the module:
-# import pipeclient
-# client = pipeclient.PipeClient()
-
-# # Create a client instance:
-# # Send a command:
-# # Read the last reply:
-# def do(command):
-# 	client.write(command, timer=True)
-# 	print(client.read())
+import effects
 
 app = Flask(__name__, static_url_path='')
 
@@ -39,98 +28,91 @@ def send_css(path):
 
 
 # ====== Actions ======
-# TODO: Make these async POST requests instead of redirecting to home
 
 # ====== Editor Buttons ======
 
-@app.route('/export/')
+@app.route('/export/', methods = ['POST'])
 def export():
 	editor.exportFile()
-	return redirect("/", code=302)
+	return "EXPORT"
 
-@app.route('/import-raw/')
+@app.route('/import/', methods = ['POST'])
 def open():
 	editor.startProject()
-	return redirect("/", code=302)
+	return "IMPORT"
 
-@app.route('/select-all/')
+@app.route('/select-all/', methods = ['POST'])
 def select_all():
 	editor.selectAll()
+	return "SELECT_ALL"
 	
-	return jsonify({
-		"test": "SELECT_ALL"
-	})
-	
-
-@app.route('/undo/')
+@app.route('/undo/', methods = ['POST'])
 def undo_action():
 	editor.undo()
-	return redirect("/", code=302)
-
+	return "UNDO"
 
 # ====== Effect Buttons ======
 
 
-@app.route('/glitchit/')
+@app.route('/glitchit/', methods = ['POST'])
 def glitchit():
 	effects.glitchit()
-	return redirect("/", code=302)
+	return "glitchit"
 
-@app.route('/echo/')
+@app.route('/echo/', methods = ['POST'])
 def echo():
 	effects.echo()
-	return redirect("/", code=302)
+	return "echo"
 
-@app.route('/fade-in/')
+@app.route('/fade-in/', methods = ['POST'])
 def fadeIn():
 	effects.fadeIn()
-	return redirect("/", code=302)
+	return "fadein"
 
-@app.route('/fade-out/')
+@app.route('/fade-out/', methods = ['POST'])
 def fadeOut():
 	effects.fadeOut()
-	return redirect("/", code=302)
+	return "fadeout"
 
-@app.route('/filter-curve/')
+@app.route('/filter-curve/', methods = ['POST'])
 def filterCurve():
 	effects.filterCurve()
-	return redirect("/", code=302)
+	return "filtercurve"
 
-@app.route('/graphic-eq/')
+@app.route('/graphic-eq/', methods = ['POST'])
 def graphicEQ():
 	effects.graphicEQ()
-	return redirect("/", code=302)
+	return "GRAPHIC EQ"
 
-@app.route('/invert/')
+@app.route('/invert/', methods = ['POST'])
 def invert():
 	effects.invert()
-	return redirect("/", code=302)
+	return "INVERT"
 
-@app.route('/reverb/')
+@app.route('/reverb/', methods = ['POST'])
 def reverb():
 	effects.reverb()
-	return redirect("/", code=302)
+	return "REVERB"
 
-@app.route('/reverse/')
+@app.route('/reverse/', methods = ['POST'])
 def reverse():
 	effects.reverse()
-	return redirect("/", code=302)
+	return "REVERSE"
 
-@app.route('/paulstretch/')
+@app.route('/paulstretch/', methods = ['POST'])
 def paulstretch():
 	effects.paulstretch()
-	return redirect("/", code=302)
+	return "PAULSTRETCH"
 
-@app.route('/phaser/')
+@app.route('/phaser/', methods = ['POST'])
 def phaser():
 	effects.phaser()
-	return redirect("/", code=302)
+	return "PHASER"
 
-@app.route('/wahwah/')
+@app.route('/wahwah/', methods = ['POST'])
 def wahwah():
 	effects.wahwah()
-	return redirect("/", code=302)
-
-
+	return "WAHWAH"
+	
 if __name__ == '__main__':
 	app.run(debug=True)

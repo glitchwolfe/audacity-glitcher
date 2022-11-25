@@ -1,7 +1,7 @@
 function send_request(url){
 	console.log("SEND REQUEST", url)
 	$.ajax({
-		type: "GET",
+		type: "POST",
 		url: url,
 		success: function(data) {
 		   console.log(data)
@@ -10,10 +10,11 @@ function send_request(url){
 		  console.log(xhr.status);
 		  console.log(thrownError);
 		}
-  });
+  	});
 }
 
 function importRaw(){
+	send_request('import');
 	Swal.fire({
 		title: "Importing File...",
 		html: `
@@ -38,10 +39,12 @@ function importRaw(){
 }
 
 function exportRaw(){
+	send_request('export');
 	Swal.fire({
 		title: "Exporting File...",
 		html: `
-		<p>Please check Audacity.</p>
+		<p>NOTE: THIS MUST BE DONE MANUALLY</p>
+		<p>Press CTRL+SHIFT+E with the Audacity window focused to open the Export File dialog</p>
 		<table>
 			<thead>
 				<tr><th colspan=2>Recommended Settings</th></tr>

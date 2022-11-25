@@ -5,22 +5,18 @@
 #	These functions handle actions in the audacity editor, such as I/O and selection
 #
 # ==========================
-
-# exec( open("pipe_test.py" ).read() )
-
+import sys
+import pipe_test
 import json
 
-
-# # Import the module:
-# import pipeclient
-# client = pipeclient.PipeClient()
-# # Create a client instance:
-# # Send a command:
-# # Read the last reply:
-# def do(command):
-# 	client.write(command, timer=True)
-# 	print(client.read())
-
+def do(cmd):
+	print("\nEDITOR COMMAND: "+cmd+"\n")
+	try:
+		response = pipe_test.do_command(cmd)
+		print("======================")
+		return response
+	except:
+		print("Oops!", sys.exc_info()[0], "occurred. [", cmd,"]")
 
 def importRaw():
 	do("ImportRaw") # Requires manual input
@@ -36,7 +32,7 @@ def importRaw():
 	-c 1         # Channels:    1 Channel (mono)
 	-r 44100     # Sample Rate: 44100 Hz
 	"""
-	# input_path = "/Users/glojonat/Documents/audacity-glitcher/tmp/blep.wav"
+	# input_path = "/test/directory/blep.wav"
 	# do("Import2: Filename={}".format(input_path)) # Won't work unless file is converted to .wav first
 
 def exportFile():
@@ -44,7 +40,12 @@ def exportFile():
 	# File type: Other uncompressed files
 	# Header:    RAW (header-less)
 	# Encoding:  U-Law
-	do("Export")
+	
+	# NOTE: SEEMS TO HAVE TO BE DONE MANUALLY AT THE MOMENT
+	# "Export" will default to exporting audio
+	# CTRL+SHIFT+E seems to be the only way to open the export dialog
+	# do("Export")
+	pass
 
 def fitWindow():
 	do("FitInWindow") # Fit the track to the width of the screen
@@ -58,9 +59,15 @@ def selectAll():
 	fitWindow()
 	trackInfo = getTrackInfo()
 	end       = trackInfo.get('end')
-	newStart  = float(float(end) * float(0.015)) # Find the timestamp @ 1% of the total track time
-	do("SelectTime: Start={} End={}".format(newStart, end))
+	
+	# newStart  = float(float(end) * float(0.015)) # Find the timestamp @ 1% of the total track time
+	
+	# Find the timestamp @ 1% of the total track time
+	# ADJUSTING FOR 29MB .TIF FILE MADE IN GIMP
+	newStart  = float(float(end) * float(0.017)) 
+	
 
+	do("SelectTime: Start={} End={}".format(newStart, end))
 
 # Get the attributes of a single track in JSON format
 # Parses JSON out of the string response from the command
@@ -69,7 +76,6 @@ def getTrackInfo(trackIndex=0):
 	response = response.replace("BatchCommand finished: OK", "").strip()
 	tracks   = json.loads(response)
 	return tracks[trackIndex]
-
 
 def startProject():
 	importRaw()

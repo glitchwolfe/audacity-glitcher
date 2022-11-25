@@ -77,4 +77,4 @@ def quick_test():
     do_command('Help: Command="GetInfo"')
     #do_command('SetPreference: Name=GUI/Theme Value=classic Reload=1')
 
-quick_test()
+# quick_test()
